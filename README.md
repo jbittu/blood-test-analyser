@@ -1,18 +1,126 @@
-# Project Setup and Execution Guide
+#  Blood Test Report Analyser (AI-Based)
 
-## Getting Started
+An AI-powered humorous simulation system that analyzes blood test reports with exaggerated, fictional medical and lifestyle recommendations using CrewAI agents.
 
-### Install Required Libraries
-```sh
-pip install -r requirement.txt
+> ⚠️ This project is intentionally exaggerated, dramatized, and satirical—**not meant for real medical use**.
+
+---
+
+##  Features
+
+- 🤖 Multi-agent system using `CrewAI` with agents:
+  - Doctor (diagnoses everything dramatically)
+  - Nutritionist (pushes weird superfoods and supplements)
+  - Exercise Coach (forces intense CrossFit routines)
+  - Verifier (blindly approves all documents as blood reports)
+- 📄 PDF blood test report ingestion
+- 🧠 Custom LLM integration using Google Gemini (`gemini-2.0-flash`)
+- 🧰 Tools for nutrition, exercise, internet search, and blood report parsing
+- 📦 REST API using FastAPI
+- 📤 Saves analysis results to output directory
+
+---
+
+##  Tech Stack
+
+| Component         | Tool/Library                     |
+|------------------|----------------------------------|
+| Backend API      | FastAPI                          |
+| Agents Framework | CrewAI                           |
+| LLM              | Google Gemini (`gemini-2.0-flash`) via LangChain |
+| PDF Parsing      | `langchain_community.PyPDFLoader` |
+| Tools Integration| Custom classes + CrewAI tools    |
+| Async Handling   | Python asyncio                   |
+| Deployment       | Uvicorn                          |
+
+---
+
+##  Folder Structure
+
+blood-test-analyser/
+├── agents.py # CrewAI agents (Doctor, Verifier, etc.)
+├── main.py # FastAPI application entrypoint
+├── task.py # Task definitions assigned to agents
+├── tools.py # Custom tool classes for blood, nutrition, exercise
+├── data/ # Uploaded blood report PDFs
+├── output/ # JSON outputs of analyses
+├── requirements.txt # Dependencies
+└── .env # API keys and CrewAI settings
+
+yaml
+Copy
+Edit
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1. Clone the Repo
+
+```bash
+git clone https://github.com/yourusername/blood-test-analyser.git
+cd blood-test-analyser
+```
+### 2. Create and Activate Virtual Environment
+
+```bash
+python -m venv venv
+source venv\Scripts\activate
 ```
 
-# You're All Not Set!
-🐛 **Debug Mode Activated!** The project has bugs waiting to be squashed - your mission is to fix them and bring it to life.
+### 3. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+### 4. Setup .env
+Create a .env file in the root directory:
 
-## Debugging Instructions
+```bash
+GOOGLE_API_KEY=your_google_api_key_here
+CREWAI_LLM_BACKEND=langchain
+```
+### 5. Run Server
+```bash
+uvicorn main:app --reload
+```
+API will be available at: http://127.0.0.1:8000
 
-1. **Identify the Bug**: Carefully read the code and understand the expected behavior.
-2. **Fix the Bug**: Implement the necessary changes to fix the bug.
-3. **Test the Fix**: Run the project and verify that the bug is resolved.
-4. **Repeat**: Continue this process until all bugs are fixed.
+###  API Usage
+Endpoint: /analyze
+POST blood test report and query:
+
+```bash
+curl -X 'POST' \
+  'http://127.0.0.1:8000/analyze' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'file=@blood_test_report.pdf;type=application/pdf' \
+  -F 'query=Summarise my Blood Test Report'
+  ```
+### Response
+```json
+
+{
+  "status": "success",
+  "query": "Summarise my Blood Test Report",
+  "analysis": " Doctor recommends... 🧘 Nutritionist says... ",
+  "file_processed": "blood_test_report.pdf",
+  "output_saved_to": "output/analysis_result_<uuid>.json"
+}
+```
+
+##  Design Decisions
+LLM Backend: We use LangChain with ChatGoogleGenerativeAI (Gemini) for full control and compatibility.
+
+CrewAI: Chosen for ease of agent/task orchestration and tool integration.
+
+Tasks are intentionally funny and illogical to showcase prompt design + multi-agent dynamics.
+
+Tools are modular (ReadBloodReportTool, NutritionTool, ExerciseTool) for extensibility.
+
+## Disclaimer
+This app is not a medical tool. It's a demo project meant for learning AI agent systems with humor and creativity. Never use it for real health decisions.
+
+## 📄 License
+MIT License - feel free to use and modify.
+
