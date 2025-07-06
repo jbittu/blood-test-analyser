@@ -37,6 +37,7 @@ An AI-powered humorous simulation system that analyzes blood test reports with e
 
 ##  Folder Structure
 
+```
 blood-test-analyser/
 ├── agents.py # CrewAI agents (Doctor, Verifier, etc.)
 ├── main.py # FastAPI application entrypoint
@@ -47,40 +48,36 @@ blood-test-analyser/
 ├── requirements.txt # Dependencies
 └── .env # API keys and CrewAI settings
 
-yaml
-Copy
-Edit
-
----
+```
 
 ## ⚙️ Setup Instructions
 
 ### 1. Clone the Repo
 
-```bash
-git clone https://github.com/yourusername/blood-test-analyser.git
+```
+git clone https://github.com/jbittu/blood-test-analyser.git
 cd blood-test-analyser
 ```
 ### 2. Create and Activate Virtual Environment
 
-```bash
+```
 python -m venv venv
 source venv\Scripts\activate
 ```
 
 ### 3. Install Dependencies
-```bash
+```
 pip install -r requirements.txt
 ```
 ### 4. Setup .env
 Create a .env file in the root directory:
 
-```bash
+```
 GOOGLE_API_KEY=your_google_api_key_here
 CREWAI_LLM_BACKEND=langchain
 ```
 ### 5. Run Server
-```bash
+```
 uvicorn main:app --reload
 ```
 API will be available at: http://127.0.0.1:8000
@@ -89,7 +86,7 @@ API will be available at: http://127.0.0.1:8000
 Endpoint: /analyze
 POST blood test report and query:
 
-```bash
+```
 curl -X 'POST' \
   'http://127.0.0.1:8000/analyze' \
   -H 'accept: application/json' \
