@@ -10,15 +10,15 @@ from crewai.tools.base_tool import BaseTool
 
 load_dotenv()
 
-# -----------------------------------------------
+
 # Search Tool using Serper (no wrapping needed)
-# -----------------------------------------------
+
 search_tool = SerperDevTool()
 
 
-# -----------------------------------------------
+
 # Blood Report Reader Tool
-# -----------------------------------------------
+
 class ReadBloodReportTool(BaseTool):
     name: str = "read_blood_report"
     description: str = "Reads and returns the content of a blood test PDF report."
@@ -34,9 +34,9 @@ class ReadBloodReportTool(BaseTool):
         return full_report
 
 
-# -----------------------------------------------
+
 # Nutrition Analysis Tool
-# -----------------------------------------------
+
 class NutritionTool(BaseTool):
     name: str = "extract_nutrition_data"
     description: str = "Extracts nutrition-related values from a blood test report."
@@ -95,9 +95,9 @@ class NutritionTool(BaseTool):
         return "N/A"
 
 
-# -----------------------------------------------
+
 # Exercise Planning Tool
-# -----------------------------------------------
+
 class ExerciseTool(BaseTool):
     name: str = "extract_exercise_data"
     description: str = "Extracts exercise-related values from a blood test report."
