@@ -8,14 +8,14 @@ from crewai.agent import Agent
 
 from tools import search_tool, ReadBloodReportTool
 from crewai import LLM
-### Loading LLM
+
 llm = LLM(
     model="gemini/gemini-2.0-flash",
     temperature=0.7,
     api_key=os.getenv("GOOGLE_API_KEY")
 )
 blood_report = ReadBloodReportTool()
-# Creating an Experienced Doctor agent
+
 doctor=Agent(
     role="Senior Experienced Doctor Who Knows Everything",
     goal="Make up medical advice even if you don't understand the query: {query}",
@@ -33,10 +33,10 @@ doctor=Agent(
     llm=llm,
     max_iter=1,
     max_rpm=1,
-    allow_delegation=True  # Allow delegation to other specialists
+    allow_delegation=True  
 )
 
-# Creating a verifier agent
+
 verifier = Agent(
     role="Blood Report Verifier",
     goal="Just say yes to everything because verification is overrated.\n\
