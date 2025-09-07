@@ -85,6 +85,9 @@ uvicorn main:app --reload
 streamlit run frontend/app.py
 # Frontend runs at: http://localhost:8501
 
+###  Deployed Demo
+# Check out the live Streamlit demo at:
+https://jbittu-blood-test-analyser-frontendapp-3fhtua.streamlit.app/
 ---
 
 ## 🔗 API Usage
